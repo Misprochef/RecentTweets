@@ -1,0 +1,220 @@
+body {
+  margin: 0;
+  /* background-color: #f6f6f6; */
+}
+
+a {
+  color: #71838D;
+  text-decoration: none;
+}
+
+.header-row {
+  width: 100%;
+  height: 30px;
+}
+
+header p {
+  color: #0489C1;
+  font-size: 150%;
+}
+
+.home-nav {
+  color: #0489C1;
+}
+
+.input {
+  margin-bottom: 0;
+}
+
+/* div {
+  line-height: 1.2;
+} */
+
+.hl {
+  width: 20%;
+  color: #DDDDDD;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.headline {
+  margin-left: 30%;
+  margin-right: 23%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.headline h2 {
+  margin-bottom: 30px;
+}
+
+.account-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+}
+
+.account-container img {
+  margin-right: 15px;
+}
+
+.profile_text {
+  line-height: 1.5;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.homepage {
+  /* margin: 10px 0; */
+}
+
+.retweet_dis {
+  color: #17BF63;
+}
+
+.like_dis {
+  color: #E0245E;
+}
+
+.avg-container-par {
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+.avg-text {
+  font-size: 120%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.avg-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.avg-date {
+  width: 100%;
+}
+
+.retweet_dis_avg {
+  /* margin: 0 20px; */
+  width: 50%;
+}
+
+.like_dis_avg {
+  /* margin: 0 20px; */
+  width: 50%;
+}
+
+.tweet-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 20px 5px;
+}
+
+.TopTweet {
+  margin-left: 2%;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-size: 160%;
+}
+
+.tweet-container p {
+  font-size: 130%;
+}
+
+.hl-tweets {
+  margin-top: 30px;
+  width: 60%;
+  color: #DDDDDD;
+}
+
+p.tweet-date {
+  font-size: 115%;
+}
+
+#tweet-text{
+ padding: 2px 0 20px;
+ line-height: 1.5;
+}
+
+.tweets-remarks {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.bet-marks {
+  margin-right: 20px;
+}
+
+.miru {
+  position: absolute;
+  right: 0;
+}
+
+.footer {
+  margin: 0 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer p {
+  color: #71838D;
+}
+
+@media (max-width: 576px) {
+  form .btn {
+    display: none;
+  }
+
+  .headline {
+    margin-left: 5%;
+    margin-right: 3%
+  }
+
+  .hl-md-lower {
+    width: 20%;
+    color: #DDDDDD;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer {
+    margin: 0 5%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .hl-md-lower {
+    width: 20%;
+    color: #DDDDDD;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .headline {
+    margin-left: 20%;
+    margin-right: 17%;
+  }
+
+  .footer {
+    margin: 0 20%;
+  }
+}
+
+/* @media (min-width: 769px) {
+  .col-md-7 {
+    position: relative;
+  }
+
+  .tweets-column {
+    position: absolute;
+    right: 0;
+  }
+} */
