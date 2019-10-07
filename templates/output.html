@@ -1,16 +1,20 @@
-<!DOCTYPE html><html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Recent Tweets</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-<link rel="stylesheet" href="../static/css/styles_output.css">
-<link rel="icon" href="../static/img/chart.ico">
-<link rel="apple-touch-icon" sizes="151x151" href="../static/img/chart.png">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Recent Tweets</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <link rel="stylesheet" href="../static/css/styles_output.css">
+  <link rel="icon" href="../static/img/chart.ico">
+  <link rel="apple-touch-icon" sizes="151x151" href="../static/img/chart.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 </head>
+
 <body>
 
   <div class="header-row">
@@ -27,14 +31,14 @@
               <p>Recent Tweets</p>
             </a>
             <form class="form-inline" method="post" action="{{ url_for("output") }}">
-             <label class="sr-only" for="user_id"></label>
-             <div class="input-group mr-sm-2">
-               <div class="input-group-prepend">
-                 <div class="input-group-text">@</div>
-               </div>
-               <input id="user_id" name="user_id" type="text" class="form-control"  placeholder="Twitter IDを入力">
-             </div>
-             <button type="submit" class="btn btn-outline-primary">GET</button>
+              <label class="sr-only" for="user_id"></label>
+              <div class="input-group mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@</div>
+                </div>
+                <input id="user_id" name="user_id" type="text" class="form-control" placeholder="Twitter IDを入力して下さい">
+              </div>
+              <button type="submit" class="btn btn-outline-primary">GET</button>
             </form>
           </nav>
         </div>
@@ -81,19 +85,19 @@
               <hr class="hl">
             </div>
             <p class="avg-text">リツイート・いいねの日別平均</p>
-              {% for index, row in grouped_df.iterrows() %}
-              <div class="avg-container">
-                <div class="avg-date">
-                  {{index}}
-                </div>
-                <div class="retweet_dis_avg">
-                  <span class="retweet_dis "><i class="fas fa-retweet"></i>   {{row["retweets"]}}</span>
-                </div>
-                <div class="like_dis_avg">
-                  <span class="like_dis "><i class="far fa-heart"></i>   {{row["fav"]}}</span>
-                </div>
+            {% for index, row in grouped_df.iterrows() %}
+            <div class="avg-container">
+              <div class="avg-date">
+                {{index}}
               </div>
-              {% endfor %}
+              <div class="retweet_dis_avg">
+                <span class="retweet_dis "><i class="fas fa-retweet"></i> {{row["retweets"]}}</span>
+              </div>
+              <div class="like_dis_avg">
+                <span class="like_dis "><i class="far fa-heart"></i> {{row["fav"]}}</span>
+              </div>
+            </div>
+            {% endfor %}
             {% endif %}
           </div>
         </div>
@@ -101,7 +105,7 @@
         <hr class="hl-md-lower">
 
         <!-- TopTweet -->
-        <div class= "col-md-7 order-xs-3">
+        <div class="col-md-7 order-xs-3">
           <div class="tweets-column">
             {% if profile %}
             <p class="TopTweet">Top Tweets | リツイートが多い順</p>
@@ -110,9 +114,10 @@
               <p class="tweet-date">{{row["created_at"]}}</p>
               <div id="tweet-text">{{row["text"]}}</div>
               <div class="tweets-remarks">
-                <span class="bet-marks retweet_dis" style=""><i class="fas fa-retweet"></i>   {{row["retweets"]}}</span>
-                <span class="bet-marks like_dis" style=""><i class="far fa-heart"></i>   {{row["fav"]}}</span>
-                <a class="miru" href="https://twitter.com/{{user_id}}/status/{{row["tweet_id"]}}" target="_blank">ツイートを見る</a>
+                <span class="bet-marks retweet_dis" style=""><i class="fas fa-retweet"></i> {{row["retweets"]}}</span>
+                <span class="bet-marks like_dis" style=""><i class="far fa-heart"></i> {{row["fav"]}}</span>
+                <a class="miru" href="https://twitter.com/{{user_id}}/status/{{row["tweet_id"]}}"
+                  target="_blank">ツイートを見る</a>
               </div>
               <div class="row">
                 <hr class="hl-tweets">
@@ -133,56 +138,57 @@
     </section>
 
   </div>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script>
- {% if profile %}
-  // bar chart data
-  var barData = {
-  labels : [{% for index, row in tweets_df.sort_values(by="created_at", ascending=True).iterrows() %}
-                 "{{row['created_at']}}",
-             {% endfor %}],
-  datasets : [
-     {
-           label: "   リツイート",
-           backgroundColor: 'rgba(255, 99, 132, 0.2)',
-           borderColor: 'rgba(255,99,132,1)',
-           borderWidth:10,
-           bezierCurve : false,
-           data : [{% for index, row in tweets_df.sort_values(by="created_at", ascending=True).iterrows() %}
-                     {{row["retweets"]}},
-                   {% endfor %}]
-     },{
-           label: "   いいね",
-           data : [{% for index, row in tweets_df.sort_values(by="created_at", ascending=True).iterrows() %}
-                     {{row["fav"]}},
-                   {% endfor %}],
-           type: 'line',
-           borderColor: 'rgb(63, 127, 191)',
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>
+    {% if profile %}
+    // bar chart data
+    var barData = {
+      labels: [{% for index, row in tweets_df.sort_values(by = "created_at", ascending = True).iterrows() %}
+    "{{row['created_at']}}",
+      {% endfor %}],
+    datasets: [
+      {
+        label: "   リツイート",
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 10,
+        bezierCurve: false,
+        data: [{% for index, row in tweets_df.sort_values(by = "created_at", ascending = True).iterrows() %}
+                     {{ row["retweets"]}},
+      {% endfor %}]
+     }, {
+      label: "   いいね",
+        data : [{% for index, row in tweets_df.sort_values(by = "created_at", ascending = True).iterrows() %}
+    { { row["fav"] } },
+    {% endfor %}],
+    type: 'line',
+      borderColor: 'rgb(63, 127, 191)',
      }
      ]
   }
-  
-  // draw bar chart
- var mychart = document.getElementById("chart");
- var chart = new Chart(mychart, {
-   type:'bar',
-   data:barData,
-   options: {
-       scales: {
-         yAxes: [
-           {
-             ticks: {
-               beginAtZero: true,
-               min: 0,
-               max: 1000
-             }
-           }
-         ]
-       }
-     }
- });
-  {% endif %}
-</script>
+
+    // draw bar chart
+    var mychart = document.getElementById("chart");
+    var chart = new Chart(mychart, {
+      type: 'bar',
+      data: barData,
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                min: 0,
+                max: 1000
+              }
+            }
+          ]
+        }
+      }
+    });
+    {% endif %}
+  </script>
 </body>
+
 </html>

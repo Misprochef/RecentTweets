@@ -1,169 +1,175 @@
-<!DOCTYPE html><html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Recent Tweets</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-<link rel="stylesheet" href="../static/css/styles_input.css">
-<link rel="icon" href="../static/img/chart.ico">
-<link rel="apple-touch-icon" sizes="144x144" href="../static/img/chart.png">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
-</head>
-<body>
-<div class="container">
+<!DOCTYPE html>
+<html lang="ja">
 
-  <header>
-    <div class="row">
-      <div class="col-md-12 title">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Recent Tweets</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <link rel="stylesheet" href="../static/css/styles_input.css">
+  <link rel="icon" href="../static/img/chart.ico">
+  <link rel="apple-touch-icon" sizes="144x144" href="../static/img/chart.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <div class="row">
+        <div class="col-md-12 title">
           <a href="/">
             <i class="far fa-chart-bar d-inline-block"></i>
             <h1>Recent Tweets</h1>
           </a>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <div class="row">
-     <div class="col-md-12 div-form">
-      <form class="form-inline" method="post" action="{{ url_for("output") }}">
-         <div class="form-group input">
+    <div class="row">
+      <div class="col-md-12 div-form">
+        <form class="form-inline" method="post" action="{{ url_for("output") }}">
+          <div class="form-group input">
             <label class="sr-only" for="user_id"></label>
             <div class="input-group mr-sm-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">@</div>
               </div>
-              <input id="user_id" name="user_id" type="text" class="form-control"  placeholder="Twitter IDを入力">
+              <input id="user_id" name="user_id" type="text" class="form-control" placeholder="Twitter IDを入力して下さい">
             </div>
-         </div>
-      <button type="submit" class="btn btn-outline-primary">GET</button>
+          </div>
+          <button type="submit" class="btn btn-outline-primary">GET</button>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <hr class="hl">
-  </div>
+    <div class="row">
+      <hr class="hl">
+    </div>
 
-  <div class="row headline">
-    <h2>直近30ツイートを分析します</h2>
-    <p>リツイート・いいね数の推移をグラフで表示します</p>
-    <p>ツイートをリツイートの多い順に並べ替えます</p>
-  </div>
+    <div class="row headline">
+      <h2>直近30ツイートを分析します</h2>
+      <p>リツイート・いいね数の推移をグラフで表示します</p>
+      <p>ツイートをリツイートの多い順に並べ替えます</p>
+    </div>
 
-  <div class="row">
-    <hr class="hl">
-  </div>
+    <div class="row">
+      <hr class="hl">
+    </div>
 
-  <!-- <div class="row headline">
+    <!-- <div class="row headline">
     <h2></h2>
   </div> -->
 
-  <div class="footer">
-    <p>&copy; Misprochef</p>
-    <p>お問い合わせ（準備中）</p>
-  </div>
+    <div class="footer">
+      <p>&copy; Misprochef</p>
+      <p>お問い合わせ（準備中）</p>
+    </div>
 
- <!-- chart -->
-   <div class="row">
-     <div class="col-md-12">
-       <canvas id="chart"></canvas>
-     </div>
-   </div>
- <div class="row">
-   <div class="col-md-4">
-   {% if profile %}
-     <div class="white-container">
-       <div>
-         <img src="{{profile.image}}" width="100px">
-         <a href="https://twitter.com/{{profile.user_id}}">@{{profile.user_id}}</a>
-       </div>
-       <div class="">
-         <a href="{{profile.homepage}}">ホームページ</a>
-       </div>
-       <div>{{profile.description}}</div>
-     </div>
-   {% endif %}
-   {% if profile %}
-     <div class="white-container">
-       <div>
-         {% for index, row in grouped_df.iterrows() %}
-         <div>
-             {{index}}
-             <i class="fas fa-retweet"></i>  {{row["retweets"]}}
-             <i class="far fa-heart"></i>  {{row["fav"]}}
-         </div>
-         {% endfor %}
-     </div>
-   {% endif %}
-   </div>
-   </div>
-   <div class= "col-md-8">
-   {% if profile %}
-   <div>もっともリツイート・いいねされたツイート</div>
-   {% for index, row in sorted_df.iterrows() %}
-     <div class="white-container">
-       <div>{{row["created_at"]}}</div>
-       <div id="tweet-text">{{row["text"]}}</div>
-       <div>
-         <span><i class="far fa-heart"></i>  {{row["fav"]}}</span> <span><i class="fas fa-retweet"></i>  {{row["retweets"]}}</span>
-         <a class="pull-right" href="https://twitter.com/{{user_id}}/status/{{row["tweet_id"]}}">ツイートを見る</a>
-       </div>
-     </div>
-   {% endfor %}
-   {% endif %}
- </div>
-</div>
-</div>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script>
- {% if profile %}
-  // bar chart data
-  var barData = {
-  labels : [{% for index, row in tweets_df.sort_values(by="created_at", ascending=True).iterrows() %}
-                 "{{row['created_at']}}",
-             {% endfor %}],
-  datasets : [
-     {
-           label: "Retweets",
-           backgroundColor: 'rgba(255, 99, 132, 0.2)',
-           borderColor: 'rgba(255,99,132,1)',
-           borderWidth:10,
-           bezierCurve : false,
-           data : [{% for index, row in tweets_df.sort_values(by="created_at", ascending=True).iterrows() %}
-                     {{row["retweets"]}},
-                   {% endfor %}]
-     },{
-           label: "likes",
-           data : [{% for index, row in tweets_df.sort_values(by="created_at", ascending=True).iterrows() %}
-                     {{row["fav"]}},
-                   {% endfor %}],
-           type: 'line',
-           borderColor: 'rgb(63, 127, 191)',
+    <!-- chart -->
+    <div class="row">
+      <div class="col-md-12">
+        <canvas id="chart"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        {% if profile %}
+        <div class="white-container">
+          <div>
+            <img src="{{profile.image}}" width="100px">
+            <a href="https://twitter.com/{{profile.user_id}}">@{{profile.user_id}}</a>
+          </div>
+          <div class="">
+            <a href="{{profile.homepage}}">ホームページ</a>
+          </div>
+          <div>{{profile.description}}</div>
+        </div>
+        {% endif %}
+        {% if profile %}
+        <div class="white-container">
+          <div>
+            {% for index, row in grouped_df.iterrows() %}
+            <div>
+              {{index}}
+              <i class="fas fa-retweet"></i> {{row["retweets"]}}
+              <i class="far fa-heart"></i> {{row["fav"]}}
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-8">
+        {% if profile %}
+        <div>もっともリツイート・いいねされたツイート</div>
+        {% for index, row in sorted_df.iterrows() %}
+        <div class="white-container">
+          <div>{{row["created_at"]}}</div>
+          <div id="tweet-text">{{row["text"]}}</div>
+          <div>
+            <span><i class="far fa-heart"></i> {{row["fav"]}}</span> <span><i class="fas fa-retweet"></i>
+              {{row["retweets"]}}</span>
+            <a class="pull-right" href="https://twitter.com/{{user_id}}/status/{{row["tweet_id"]}}">ツイートを見る</a>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>
+    {% if profile %}
+    // bar chart data
+    var barData = {
+      labels: [{% for index, row in tweets_df.sort_values(by = "created_at", ascending = True).iterrows() %}
+    "{{row['created_at']}}",
+      {% endfor %}],
+    datasets: [
+      {
+        label: "Retweets",
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 10,
+        bezierCurve: false,
+        data: [{% for index, row in tweets_df.sort_values(by = "created_at", ascending = True).iterrows() %}
+                     {{ row["retweets"]}},
+      {% endfor %}]
+     }, {
+      label: "likes",
+        data : [{% for index, row in tweets_df.sort_values(by = "created_at", ascending = True).iterrows() %}
+    { { row["fav"] } },
+    {% endfor %}],
+    type: 'line',
+      borderColor: 'rgb(63, 127, 191)',
      }
      ]
   }
-  // draw bar chart
- var mychart = document.getElementById("chart");
- var chart = new Chart(mychart, {
-   type:'bar',
-   data:barData,
-   options: {
-       scales: {
-         yAxes: [
-           {
-             ticks: {
-               beginAtZero: true,
-               min: 0,
-               max: 1000
-             }
-           }
-         ]
-       }
-     }
- });
-  {% endif %}
-</script>
+    // draw bar chart
+    var mychart = document.getElementById("chart");
+    var chart = new Chart(mychart, {
+      type: 'bar',
+      data: barData,
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                min: 0,
+                max: 1000
+              }
+            }
+          ]
+        }
+      }
+    });
+    {% endif %}
+  </script>
 </body>
+
 </html>
