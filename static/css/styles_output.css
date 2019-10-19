@@ -159,13 +159,14 @@ p.tweet-date {
 }
 
 .footer {
-  margin: 0 30%;
+  /* margin: 0 23% 0 0; */
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .footer p {
   color: #71838D;
+  margin-bottom: 5px;
 }
 
 @media (max-width: 576px) {
@@ -184,10 +185,6 @@ p.tweet-date {
     margin-top: 40px;
     margin-bottom: 40px;
   }
-
-  .footer {
-    margin: 0 5%;
-  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -201,10 +198,6 @@ p.tweet-date {
   .headline {
     margin-left: 20%;
     margin-right: 17%;
-  }
-
-  .footer {
-    margin: 0 20%;
   }
 }
 

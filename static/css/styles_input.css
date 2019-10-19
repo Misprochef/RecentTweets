@@ -49,13 +49,14 @@ body {
 }
 
 .footer {
-  margin: 0 30%;
+  margin: 0 23% 0 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .footer p {
   color: #71838D;
+  margin-bottom: 5px;
 }
 
 .white-container {
@@ -74,6 +75,12 @@ body {
   form .btn {
     display: none;
   }
+
+  .footer {
+    margin: 0 3% 0 0;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
 @media (max-width: 576px) {
@@ -83,7 +90,9 @@ body {
   }
 
   .footer {
-    margin: 0 5%;
+    margin: 0 3% 0 0;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 
@@ -94,6 +103,8 @@ body {
   }
 
   .footer {
-    margin: 0 20%;
+    margin: 0 18% 0 0;
+    display: flex;
+    justify-content: flex-end;
   }
 }
