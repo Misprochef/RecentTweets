@@ -51,7 +51,7 @@
 
     <div class="row headline">
       <h2>直近30ツイートを分析します</h2>
-      <p>リツイート・いいね数の推移をグラフで表示します</p>
+      <p>リツイート数の推移をグラフで表示します</p>
       <p>ツイートをリツイートの多い順に並べ替えます</p>
     </div>
 
@@ -59,117 +59,13 @@
       <hr class="hl">
     </div>
 
-    <!-- <div class="row headline">
-    <h2></h2>
-  </div> -->
-
     <div class="footer">
       <p>&copy; Misprochef</p>
       <p>お問い合わせ（準備中）</p>
     </div>
 
-    <!-- chart -->
-    <div class="row">
-      <div class="col-md-12">
-        <canvas id="chart"></canvas>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        {% if profile %}
-        <div class="white-container">
-          <div>
-            <img src="{{profile.image}}" width="100px">
-            <a href="https://twitter.com/{{profile.user_id}}">@{{profile.user_id}}</a>
-          </div>
-          <div class="">
-            <a href="{{profile.homepage}}">ホームページ</a>
-          </div>
-          <div>{{profile.description}}</div>
-        </div>
-        {% endif %}
-        {% if profile %}
-        <div class="white-container">
-          <div>
-            {% for index, row in grouped_df.iterrows() %}
-            <div>
-              {{index}}
-              <i class="fas fa-retweet"></i> {{row["retweets"]}}
-              <i class="far fa-heart"></i> {{row["fav"]}}
-            </div>
-            {% endfor %}
-          </div>
-          {% endif %}
-        </div>
-      </div>
-      <div class="col-md-8">
-        {% if profile %}
-        <div>もっともリツイート・いいねされたツイート</div>
-        {% for index, row in sorted_df.iterrows() %}
-        <div class="white-container">
-          <div>{{row["created_at"]}}</div>
-          <div id="tweet-text">{{row["text"]}}</div>
-          <div>
-            <span><i class="far fa-heart"></i> {{row["fav"]}}</span> <span><i class="fas fa-retweet"></i>
-              {{row["retweets"]}}</span>
-            <a class="pull-right" href="https://twitter.com/{{user_id}}/status/{{row["tweet_id"]}}">ツイートを見る</a>
-          </div>
-        </div>
-        {% endfor %}
-        {% endif %}
-      </div>
-    </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-  <script>
-    {% if profile %}
-    // bar chart data
-    var barData = {
-      labels: [{% for index, row in tweets_df.sort_values(by = "created_at", ascending = True).iterrows() %}
-    "{{row['created_at']}}",
-      {% endfor %}],
-    datasets: [
-      {
-        label: "Retweets",
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255,99,132,1)',
-        borderWidth: 10,
-        bezierCurve: false,
-        data: [{% for index, row in tweets_df.sort_values(by = "created_at", ascending = True).iterrows() %}
-                     {{ row["retweets"]}},
-      {% endfor %}]
-     }, {
-      label: "likes",
-        data : [{% for index, row in tweets_df.sort_values(by = "created_at", ascending = True).iterrows() %}
-    { { row["fav"] } },
-    {% endfor %}],
-    type: 'line',
-      borderColor: 'rgb(63, 127, 191)',
-     }
-     ]
-  }
-    // draw bar chart
-    var mychart = document.getElementById("chart");
-    var chart = new Chart(mychart, {
-      type: 'bar',
-      data: barData,
-      options: {
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-                min: 0,
-                max: 1000
-              }
-            }
-          ]
-        }
-      }
-    });
-    {% endif %}
-  </script>
 </body>
 
 </html>

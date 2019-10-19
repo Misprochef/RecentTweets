@@ -1,0 +1,9 @@
+{
+    "python.formatting.provider": "black",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "window.openFoldersInNewWindow": "on",
+    "editor.hover.enabled": false
+}
