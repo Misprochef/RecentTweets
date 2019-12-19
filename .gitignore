@@ -1,3 +1,2 @@
-.log
-config.py
-top_tweets/config.py
+*.log
+/config.py
