@@ -1,6 +1,6 @@
 import tweepy
 import pandas as pd
-from flask import Flask, render_template, request, logging, Response, redirect, flash
+from flask import Flask, render_template, request
 from config import CONFIG
 
 CONSUMER_KEY = CONFIG["CONSUMER_KEY"]
@@ -48,7 +48,7 @@ def get_tweets_df(user_id):
         api.user_timeline, screen_name=user_id, exclude_replies=True
     ).items(30):
         try:
-            if not "RT @" in tweet.text:
+            if "RT @" not in tweet.text:
                 tweet_text = tweet.text.replace("\n", "")
                 tweet_text_no_http = tweet_text.split("http")[0]
                 se = pd.Series(
